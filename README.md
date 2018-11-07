@@ -14,10 +14,8 @@ There are a ton of role variables available, most of them around configuring cow
 [defaults/main.yml](defaults/main.yml) for the full list, here are the highlights:
 
 * `cowrie_hostname` is the hostname cowrie should show to things that try to connect. Defaults to
-`srv04`, just like the default cowrie config.
-* `cowrie_redirect_port` is a boolean. If set to true, the systemd service will redirect port 22 to
-2222 or whatever `cowrie_port` is set to. Note that if you do this make sure to have real SSH moved
-to a different port first! It is set to false by default to prevent accidental lockouts.
+`mgmt01`, just like the default cowrie config.
+* `cowrie_port` is set to 2222
 
 All of the default cowrie options can be configured by setting `cowrie_<option>`. Non-default
 options go in a dict called `cowrie_settings`. The keys of this dict are the headings in
