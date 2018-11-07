@@ -1,0 +1,17 @@
+# {{ ansible_managed | comment }}
+# ':' separated fields, file is processed line for line
+# processing will stop on first match
+# 
+# Field #1 contains the username
+# Field #2 is currently unused
+# Field #3 contains the password 
+# '*' for password allows any password
+# '!' at the start of a password will not grant this password access
+# '/' can be used to write a regular expression 
+#
+root:x:admin
+root:x:!123456
+root:x:veb
+root:x:!/honeypot/i
+tomcat:x:*
+oracle:x:*

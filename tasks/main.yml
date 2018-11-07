@@ -1,0 +1,47 @@
+---
+# tasks file for ansible-docker-base
+- name: Ensure Software is installed
+  yum:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - docker
+    - python-pip
+
+- name: Installed docker-py
+  pip:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - docker-py
+
+- name: Ensure docker is running and enabled
+  systemd:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Preparing Cowrie configuration
+  file:
+    path: /tmp/cowrie
+    state: directory
+
+- name: Deploy Cowrie configuration
+  template:
+    src: {{ item.src }}
+    dst: {{ item.dst }}
+  with_items:
+    - {{src: 'userdb.txt.j2', dst: '/tmp/cowrie/userdb.txt'}}
+    - {{src: 'cowrie.cfg.j2', dst: '/tmp/cowrie/cowrie.cfg'}}
+
+- name: Starting Docker Cowrie container
+  docker_container:
+    name: cowried
+    image: '{{ cowrie_image }}'
+    state: started
+    restart_policy: always
+    volume: /tmp/cowrie:/cowrie/cowrie-git/etc
+    ports:
+        - {{ cowrie_port }}
+  when: 
+    - cowrie_image is defined
