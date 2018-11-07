@@ -2,8 +2,6 @@ galaxy_info:
   author: it-kombinat.org
   description: Ansible Role to configure and installing Cowrie Honeypot inside an Docker container.
   company: it-kombinat.org
-
   license: MIT
-
   min_ansible_version: 2.5
 dependencies: []
