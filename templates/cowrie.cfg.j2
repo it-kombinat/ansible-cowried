@@ -356,7 +356,7 @@ version = SSH-2.0-OpenSSH_6.0p1 Debian-4+deb7u2
 #
 # (default: 2222)
 #listen_port = 2222
-listen_port = {{ cowrie_port }}
+listen_port = {{ cowrie_src_port }}
 
 
 # Endpoint to listen on for incoming SSH connections.
@@ -618,14 +618,6 @@ listen_endpoints = tcp:2223:interface=0.0.0.0
 # mandatory fields: url, token
 # optional fields: index, source, sourcetype, host
 #
-#[output_splunk]
-#enabled = true
-#url = http://18.185.10.118:8088/services/collector/event
-#token = dfsfsd-dsfds-sdfsf-43243
-#index = cowrie
-#sourcetype = cowrie
-#source = cowrie
-
 {% if cowrie_settings is defined %}
 {% if cowrie_settings.honeypot is defined %}
 {% for key,value in cowrie_settings.iteritems() %}
@@ -637,6 +629,9 @@ listen_endpoints = tcp:2223:interface=0.0.0.0
 [{{ section }}]
 {% for key, value in settings.iteritems() %}
 {{ key }} = {{ value }}
+{% endfor %}
+{% endif %}
+
 {% endfor %}
 {% endif %}
 

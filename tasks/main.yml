@@ -28,11 +28,11 @@
 
 - name: Deploy Cowrie configuration
   template:
-    src: {{ item.src }}
-    dst: {{ item.dst }}
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
   with_items:
-    - {{src: 'userdb.txt.j2', dst: '/tmp/cowrie/userdb.txt'}}
-    - {{src: 'cowrie.cfg.j2', dst: '/tmp/cowrie/cowrie.cfg'}}
+    - { src: userdb.txt.j2, dest: /tmp/cowrie/userdb.txt }
+    - { src: cowrie.cfg.j2, dest: /tmp/cowrie/cowrie.cfg }
 
 - name: Starting Docker Cowrie container
   docker_container:
@@ -40,8 +40,8 @@
     image: '{{ cowrie_image }}'
     state: started
     restart_policy: always
-    volume: /tmp/cowrie:/cowrie/cowrie-git/etc
+    volumes: /tmp/cowrie:/cowrie/cowrie-git/etc
     ports:
-        - {{ cowrie_port }}
+        - "{{ cowrie_src_port }}:{{ cowrie_dest_port }}"
   when: 
     - cowrie_image is defined

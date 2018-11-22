@@ -1,6 +1,7 @@
 ---
 cowrie_image: cowrie/cowrie:latest
-cowrie_port: 2222
+cowrie_src_port: 2222
+cowrie_dest_port: 2222
 cowrie_hostname: mgmt01
 cowrie_log_path: /cowrie/cowrie-git/var/log/cowrie
 cowrie_contents_path: honeyfs
@@ -8,7 +9,8 @@ cowrie_txtcmds_path: txtcmds
 # Output-Plugins
 cowrie_settings:
    output_splunk:
-     enabled = true
-     url = http://{{ cowrie_remote | join(" ") }}:8088/services/collector/event
-     token = dfsfsd-dsfds-sdfsf-43243
-     source = cowrie
+     enabled: true
+     url:  http://{{ cowrie_remote | join(" ") }}:8088/services/collector/event
+     token: dfsfsd-dffdfs-sdfsf-43243
+     source: cowrie
+     sourcetype: cowrie
