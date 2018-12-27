@@ -30,7 +30,7 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-  with_items:
+  loop:
     - { src: userdb.txt.j2, dest: /tmp/cowrie/userdb.txt }
     - { src: cowrie.cfg.j2, dest: /tmp/cowrie/cowrie.cfg }
 

@@ -620,14 +620,14 @@ listen_endpoints = tcp:2223:interface=0.0.0.0
 #
 {% if cowrie_settings is defined %}
 {% if cowrie_settings.honeypot is defined %}
-{% for key,value in cowrie_settings.iteritems() %}
+{% for key,value in cowrie_settings.items() %}
 {{ key }} = {{ value }}
 {% endfor %}
 {% endif %}
-{% for section, settings in cowrie_settings.iteritems() %}
+{% for section, settings in cowrie_settings.items() %}
 {% if section != "honeypot" %}
 [{{ section }}]
-{% for key, value in settings.iteritems() %}
+{% for key, value in settings.items() %}
 {{ key }} = {{ value }}
 {% endfor %}
 {% endif %}
