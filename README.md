@@ -16,6 +16,7 @@ There are a ton of role variables available, most of them around configuring cow
 * `cowrie_hostname` is the hostname cowrie should show to things that try to connect. Defaults to
 `mgmt01`, just like the default cowrie config.
 * `cowrie_port` is set to 2222
+* `cowrie_password` is set to admin
 
 All of the default cowrie options can be configured by setting `cowrie_<option>`. Non-default
 options go in a dict called `cowrie_settings`. The keys of this dict are the headings in
